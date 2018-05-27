@@ -5,6 +5,9 @@
  */
 package Controleur;
 
+import Modele.*;
+import Vue.*;
+
 /**
  *
  * @author Quiterie
@@ -16,6 +19,20 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        // travail sur console :
+        Console c = new Console();
+        
+        c.q1_5();
+        c.afficher();
+        
+        c.q1_6();
+        c.afficher();
+        
+        c.q1_7();
+        c.afficher();
+         
+        
     }
     
 }

@@ -22,8 +22,8 @@ public class Fonds {
      */
     public Fonds()
     {
-        amount = 0.0f;
-        num_fond = "";
+        this.amount = 0.0f;
+        this.num_fond = "";
     }
     
     /**
@@ -33,8 +33,8 @@ public class Fonds {
      */
     public Fonds(double _amount, String _num_fond)
     {
-        amount = _amount;
-        num_fond = _num_fond;
+        this.amount = _amount;
+        this.num_fond = _num_fond;
     }
 
     /**
@@ -66,8 +66,15 @@ public class Fonds {
     public void setNum_fond(String num_fond) {
         this.num_fond = num_fond;
     }
-   
-    
-    
+
+    /**
+     * METHODES : Afficher les infos du fond 
+     * @return string_attributs
+     */
+    @Override
+    public String toString() {
+        return "Fonds{" + " num_fond = " + num_fond + " , amount = " + amount + " }" ;
+    }
+
     
 }

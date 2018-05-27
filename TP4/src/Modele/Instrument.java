@@ -23,8 +23,8 @@ public class Instrument {
      */
     public Instrument()
     {
-        num_inst = "";
-        instru = new ArrayList();
+        this.num_inst = "";
+        this.instru = new ArrayList();
     }
     
 
@@ -35,20 +35,10 @@ public class Instrument {
      */
     public Instrument(ArrayList<Fonds> _instru, String _num_inst)
     {
-        instru = new ArrayList();
-        instru = _instru;
-        num_inst = _num_inst;
+        this.instru = _instru;
+        this.num_inst = _num_inst;
     }
     
-    /**
-     * Methodes : ajouter un fond
-     * @param f 
-     */
-    public void ajouter(Fonds f)
-    {
-        instru.add(f);
-    }
-
     /**
      * METHODES : Lire le tableau de fonds de l'objet instrument
      * @return arraylist_fonds
@@ -79,7 +69,20 @@ public class Instrument {
         this.num_inst = num_inst;
     }
     
-    
+     /**
+     * Methodes : ajouter un fond
+     * @param f 
+     */
+    public void ajouter(Fonds f)
+    {
+        this.instru.add(f);
+    }
+
+    @Override
+    public String toString() {
+        return "Instrument{" + "instru=" + instru + ", num_inst=" + num_inst + '}';
+    }
+
     
     
     

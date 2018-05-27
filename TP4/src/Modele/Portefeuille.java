@@ -8,6 +8,7 @@ package Modele;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.lang.Math;
 
 /**
  *
@@ -26,8 +27,8 @@ public class Portefeuille {
      */
     public Portefeuille()
     {
-        hfonds = new HashMap<String, Fonds>();
-        hinstru = new HashMap<String, Instrument>();
+        this.hfonds = new HashMap<String, Fonds>();
+        this.hinstru = new HashMap<String, Instrument>();
     }
     
     /**
@@ -37,8 +38,8 @@ public class Portefeuille {
      */
     public Portefeuille(Map<String, Fonds> _hfonds , Map<String, Instrument> _hinstru)
     {
-        hfonds = _hfonds;
-        hinstru = _hinstru;   
+        this.hfonds = _hfonds;
+        this.hinstru = _hinstru;   
     }
     
     
@@ -56,7 +57,7 @@ public class Portefeuille {
         Fonds f = new Fonds();
         
         // vérifier si la clé en paramètre appartient au portefeuille 
-        i = hfonds.containsKey(num);
+        i = this.hfonds.containsKey(num);
         
         if (i == false)
         {
@@ -65,8 +66,8 @@ public class Portefeuille {
         }
         else
         {
-            // on a trouvé la clé ; on retourne le montant associé 
-            f = hfonds.get(num);
+            // on a trouvé la clé ; on retourne le montant associé
+            f = this.hfonds.get(num);
             m = f.getAmount();
             return m;
         }
@@ -86,7 +87,7 @@ public class Portefeuille {
         Instrument ii = new Instrument();
         
         // vérifier si la clé en paramètre appartient au portefeuille 
-        i = hinstru.containsKey(numero);
+        i = this.hinstru.containsKey(numero);
         
         if (i == false)
         {
@@ -96,7 +97,7 @@ public class Portefeuille {
         else
         {
             // on a trouvé la clé ; on retourne l'arraylist associé
-            ii = hinstru.get(numero);
+            ii = this.hinstru.get(numero);
             a = ii.getInstru();
             return a;
         }
@@ -114,7 +115,7 @@ public class Portefeuille {
         boolean j;
         Fonds n = new Fonds(a,num);
         
-        j = hfonds.containsKey(num);
+        j = this.hfonds.containsKey(num);
         if (j== true)
         {
             // clé deja existante
@@ -123,7 +124,62 @@ public class Portefeuille {
         else
         {
             // peut ajouter le nouveau fond dans la hashmap
-            hfonds.put(num, n);
+            this.hfonds.put(num, n);
+            System.out.println("Ajout du fond dans le portefeuille ! ");
         }
     }
+    
+    /**
+     * METHODES : Ajouter un nouveau instrument dans la map
+     * @param num
+     * @param f 
+     */
+    public void ajouter_instru(String num, Fonds f) throws InstrumentExistantException
+    {
+        boolean b;
+        int c;
+        
+        b = this.hinstru.containsKey(num);
+        if(b == true)
+        {
+            // instrument trouvé dans le portefeuille : existe déjà
+            throw new InstrumentExistantException();
+                
+        }
+        else
+        {
+            // l'instrument n'existe pas on l'ajoute a la map
+            ArrayList<Fonds> a = new ArrayList();
+            a.add(f);
+            Instrument i = new Instrument(a, num);
+            this.hinstru.put(num,i);
+            System.out.println("Ajout de l'instrument dans le portefeuille ! ");
+        }
+    }
+    
+    /**
+     * METHODES : Supprimer un fond de la map du portefeuille 
+     * @param num 
+     */
+    public void supprimer_fond(String nume)
+    {
+        try{
+            this.rechercher_fond(nume);
+            this.hfonds.remove(nume);
+            System.out.println("Ce fond a été supprimer du portefeuille");
+            
+        }
+        catch (FondsInexistantException e)
+        {
+            System.out.println("Impossible d'effectuer cette demande");        
+        }
+    }
+
+    @Override
+    public String toString() {        
+        return "\n######################## PORTEFEUILLE ###########################\n Portefeuille{" + " hfonds= " + hfonds + "\n" + ", hinstru=" + hinstru + '}';
+
+    }
+    
+    
 }

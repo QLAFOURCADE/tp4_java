@@ -9,10 +9,11 @@ package Modele;
  *
  * @author Quiterie
  */
-public class FondsExistantException extends Exception{
-
-    public FondsExistantException() {
-         System.out.println("La clé de ce fond recherché existe déjà dans le portefeuille");
+public class InstrumentExistantException extends Exception {
+    
+    public InstrumentExistantException()
+    {
+        System.out.println("La clé de cet instrument recherché existe déjà dans le portefeuille");
     }
     
 }
