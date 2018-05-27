@@ -48,6 +48,38 @@ public class Instrument {
     {
         instru.add(f);
     }
+
+    /**
+     * METHODES : Lire le tableau de fonds de l'objet instrument
+     * @return arraylist_fonds
+     */
+    public ArrayList<Fonds> getInstru() {
+        return instru;
+    }
+    /**
+     * METHODES : Lire l'attribut numéro de l'objet instrument
+     * @return 
+     */
+    public String getNum_inst() {
+        return num_inst;
+    }
+
+    /**
+     * METHODES : Modifier l'arraylist fonds
+     * @param instru 
+     */
+    public void setInstru(ArrayList<Fonds> instru) {
+        this.instru = instru;
+    }
+    /**
+     * METHODES : Modifier le numero de l'instrument
+     * @param num_inst 
+     */
+    public void setNum_inst(String num_inst) {
+        this.num_inst = num_inst;
+    }
+    
+    
     
     
     

@@ -5,6 +5,7 @@
  */
 package Modele;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,19 +42,88 @@ public class Portefeuille {
     }
     
     
-    public double rechercher_fond (String num)
+    /**
+     * METHODES : recherche d'un fond dans un portefeuille 
+     * @param num
+     * @return
+     * @throws FondsInexistantException 
+     */
+    public double rechercher_fond (String num) throws FondsInexistantException
     {
+        // initialisation variable 
         double m = 0.0f;
+        boolean i = false;
+        Fonds f = new Fonds();
         
-        try
+        // vérifier si la clé en paramètre appartient au portefeuille 
+        i = hfonds.containsKey(num);
+        
+        if (i == false)
         {
-            
+            // pas trouver dans le portefeuille : Exception
+            throw new FondsInexistantException();
         }
-        catch()
-          
-       
-        return m;
+        else
+        {
+            // on a trouvé la clé ; on retourne le montant associé 
+            f = hfonds.get(num);
+            m = f.getAmount();
+            return m;
+        }
     }
    
+    /**
+     * METHODES : Rechercher un instrument dans la hashmap
+     * @param numero
+     * @return
+     * @throws InstrumentInexistantException 
+     */
+    public ArrayList<Fonds> rechercher_instru (String numero) throws InstrumentInexistantException
+    {
+        // initialisation variable 
+        ArrayList<Fonds> a = new ArrayList();
+        boolean i = false;
+        Instrument ii = new Instrument();
+        
+        // vérifier si la clé en paramètre appartient au portefeuille 
+        i = hinstru.containsKey(numero);
+        
+        if (i == false)
+        {
+            // pas trouver dans le portefeuille : Exception
+            throw new InstrumentInexistantException();
+        }
+        else
+        {
+            // on a trouvé la clé ; on retourne l'arraylist associé
+            ii = hinstru.get(numero);
+            a = ii.getInstru();
+            return a;
+        }
+
+    }
     
+    /**
+     * METHODES : Ajouter un fonds à la hashmap
+     * @param num
+     * @param a
+     * @throws FondsInexistantException 
+     */
+    public void ajouter_fonds(String num, double a) throws FondsExistantException
+    {
+        boolean j;
+        Fonds n = new Fonds(a,num);
+        
+        j = hfonds.containsKey(num);
+        if (j== true)
+        {
+            // clé deja existante
+            throw new FondsExistantException();
+        }
+        else
+        {
+            // peut ajouter le nouveau fond dans la hashmap
+            hfonds.put(num, n);
+        }
+    }
 }
