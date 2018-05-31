@@ -164,6 +164,7 @@ public class Portefeuille {
     public void supprimer_fond(String nume)
     {
         try{
+            // numéro existant
             this.rechercher_fond(nume);
             this.hfonds.remove(nume);
             System.out.println("Ce fond a été supprimer du portefeuille");
@@ -175,6 +176,21 @@ public class Portefeuille {
         }
     }
 
+    public void supprimer_instrument(String n)
+    {
+        try{
+            // numéro existant 
+            this.rechercher_instru(n);
+            this.hinstru.remove(n);
+            System.out.println("Cet intrument a été supprimé du portefeuille");
+            
+        }
+        catch (InstrumentInexistantException e)
+        {
+            System.out.println("Impossible d'effectuer cette demande");        
+        }        
+    }
+    
     @Override
     public String toString() {        
         return "\n######################## PORTEFEUILLE ###########################\n Portefeuille{" + " hfonds= " + hfonds + "\n" + ", hinstru=" + hinstru + '}';

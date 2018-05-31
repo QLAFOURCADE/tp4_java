@@ -146,6 +146,12 @@ public class Console {
         System.out.println("Veuillez entrer la clé du fond à supprimer : ");
         String sup = sc.nextLine();
         this.p1.supprimer_fond(sup);
+        this.afficher();
+        
+        
+        System.out.println("Veuillez entrer la clé de l'instrument à supprimer : ");
+        sup = sc.nextLine();
+        this.p1.supprimer_instrument(sup);
     }
     
     /**
